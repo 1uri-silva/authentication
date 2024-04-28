@@ -1,0 +1,25 @@
+name: 'CI'
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build:
+    name: build
+    runs-on: ubuntu-latest]
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+  
+    - name: generate hash
+      id: generate_hash
+      run: |
+        HASH=$(echo $GITHUB_SHA | head -c7)
+        echo "hash=${HASH}" >> $GITHUB_OUTPUT
+    
+    - name: build docker
+      run: docker build -t iurirodriguessilva/authentication:${{ steps.generate_hash.outputs.hash }}
