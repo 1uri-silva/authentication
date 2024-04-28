@@ -30,7 +30,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: docker push hub registry
+    - name: docker push hub registry  
       run: |
         docker push iurirodriguessilva/authentication:${{ steps.generate_hash.outputs.hash }}
         docker tag iurirodriguessilva/authentication:${{ steps.generate_hash.outputs.hash }} iurirodriguessilva/authentication:latest
