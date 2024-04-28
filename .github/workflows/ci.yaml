@@ -22,4 +22,4 @@ jobs:
         echo "hash=${HASH}" >> $GITHUB_OUTPUT
     
     - name: build docker
-      run: docker build -t iurirodriguessilva/authentication:${{ steps.generate_hash.outputs.hash }}
+      run: docker build -t iurirodriguessilva/authentication:${{ steps.generate_hash.outputs.hash }} .
