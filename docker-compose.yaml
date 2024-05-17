@@ -10,7 +10,7 @@ services:
     image: postgres:alpine3.19
     container_name: postgres
     healthcheck:
-      test: [ "CMD-SHELL", "sh -c 'pg_isready -U user -d teste'" ]
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U '$POSTGRES_USER' -d '$POSTGRES_DB''" ]
       interval: 30s
       timeout: 5s
       retries: 8
@@ -36,8 +36,8 @@ services:
         condition: service_healthy
     networks:
       - connect-db
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
+    env_file:
+      - .env
 
 volumes:
   db:
